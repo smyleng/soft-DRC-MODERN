@@ -1,4 +1,4 @@
-// Sélection des éléments
+// SÃ©lection des Ã©lÃ©ments
 const scanBtn = document.getElementById('scanBtn');
 const imageInput = document.getElementById('imageInput');
 const output = document.getElementById('output');
@@ -9,7 +9,7 @@ const tokenInput = document.getElementById('tokenInput');
 const tokenBtn = document.getElementById('tokenBtn');
 const licenseMessage = document.getElementById('licenseMessage');
 
-// PUBLIC KEY pour vérifier le token/licence
+// PUBLIC KEY pour vÃ©rifier le token/licence
 const publicKey = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnmLhVgifkzoB+7rwJf8E
 0RHbcjPhOoZjCmBFPtgpqLhTCFLTOB9XvDfM4ygJY70HDObLmH4EoktY94ad9HNp
@@ -30,7 +30,7 @@ function str2ab(pem) {
   return bytes.buffer;
 }
 
-// Vérification du token/licence
+// VÃ©rification du token/licence
 async function verifyToken(token){
   try {
     const [payloadB64, sigB64] = token.split('.');
@@ -54,7 +54,7 @@ async function verifyToken(token){
   }
 }
 
-// Vérification token sauvegardé
+// VÃ©rification token sauvegardÃ©
 let savedToken = localStorage.getItem('userToken');
 if(savedToken) checkToken(savedToken);
 
@@ -67,21 +67,21 @@ tokenBtn.addEventListener('click', ()=>{
   }
 });
 
-// Fonction pour vérifier le token
+// Fonction pour vÃ©rifier le token
 async function checkToken(token){
   const valid = await verifyToken(token);
   if(valid){
     licenseContainer.style.display = 'none';
-    alert("Licence validée ! Vous pouvez utiliser l'application.");
+    alert("Licence validÃ©e ! Vous pouvez utiliser l'application.");
   } else {
-    licenseMessage.textContent = "Licence invalide ou expirée. Contactez le fournisseur pour recevoir un nouveau token.";
+    licenseMessage.textContent = "Licence invalide ou expirÃ©e. Contactez le fournisseur pour recevoir un nouveau token.";
   }
 }
 
 // ---------- OCR avec Tesseract ----------
 scanBtn.addEventListener('click', () => {
   const file = imageInput.files[0];
-  if(!file){ alert("Veuillez sélectionner une image."); return; }
+  if(!file){ alert("Veuillez sÃ©lectionner une image."); return; }
 
   output.textContent = '';
   progressFill.style.width = '0%';
@@ -111,12 +111,12 @@ scanBtn.addEventListener('click', () => {
 // ---------- Copier texte ----------
 document.getElementById('copyBtn').addEventListener('click', ()=>{
   const text = output.textContent;
-  if(text) navigator.clipboard.writeText(text).then(()=>alert('Texte copié !'));
+  if(text) navigator.clipboard.writeText(text).then(()=>alert('Texte copiÃ© !'));
 });
 
 // ---------- Partager texte ----------
 document.getElementById('shareBtn').addEventListener('click', ()=>{
   const text = output.textContent;
   if(navigator.share && text) navigator.share({text}).catch(err=>console.error(err));
-  else alert("Partage non supporté sur cet appareil.");
+  else alert("Partage non supportÃ© sur cet appareil.");
 });
