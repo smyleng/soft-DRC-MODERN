@@ -5,44 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soft DRC OCR</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Tesseract.js pour OCR -->
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    .centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #passwordContainer {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+    #passwordContainer h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    #passwordContainer input {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    #passwordContainer button {
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    #passwordContainer button:hover {
+      background-color: #0056b3;
+    }
+    #appContent {
+      display: none;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Conteneur licence (mot de passe) -->
-  <div id="passwordContainer">
-    <p>Entrez le mot de passe du mois pour débloquer l'application :</p>
-    <input id="passwordInput" type="password" placeholder="Mot de passe">
-    <button id="unlockBtn">Débloquer</button>
+  <!-- Mot de passe mensuel -->
+  <div class="centered-container" id="passwordContainer">
+    <div>
+      <h2>Entrer le mot de passe du mois</h2>
+      <input type="password" id="passwordInput" placeholder="Mot de passe">
+      <br>
+      <button id="unlockBtn">Valider</button>
+    </div>
   </div>
 
-  <!-- Conteneur principal de l'app -->
-  <div class="container" id="appContent" style="display:none;">
-    <h1>Soft DRC OCR</h1>
-    <p>Scanner et extraire le texte de vos images facilement.</p>
+  <!-- Contenu OCR -->
+  <div id="appContent">
+    <div class="container">
+      <h1>Soft DRC OCR</h1>
+      <p>Scanner et extraire le texte de vos images facilement.</p>
+      <input type="file" id="imageInput" accept="image/*">
 
-    <!-- Upload image -->
-    <input type="file" id="imageInput" accept="image/*">
+      <div class="buttons">
+        <button id="scanBtn">📷 Scanner le texte</button>
+        <button id="copyBtn">📋 Copier</button>
+        <button id="shareBtn">📤 Partager</button>
+      </div>
 
-    <!-- Boutons -->
-    <div class="buttons">
-      <button id="scanBtn">📷 Scanner le texte</button>
-      <button id="copyBtn">📋 Copier</button>
-      <button id="shareBtn">📤 Partager</button>
-    </div>
+      <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        <p>Extraction du texte en cours...</p>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+      </div>
 
-    <!-- Loader -->
-    <div id="loading" class="hidden">
-      <div class="spinner"></div>
-      <p>Extraction du texte en cours...</p>
-      <div class="progress-bar"><div id="progressFill"></div></div>
-    </div>
-
-    <!-- Zone résultat -->
-    <div id="outputContainer">
-      <h2>📝 Texte détecté :</h2>
-      <pre id="output"></pre>
+      <div id="outputContainer">
+        <h2>📝 Texte détecté :</h2>
+        <pre id="output"></pre>
+      </div>
     </div>
   </div>
 
