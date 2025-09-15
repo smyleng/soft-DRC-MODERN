@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soft DRC OCR</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Tesseract.js pour OCR -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+  <!-- Conteneur principal -->
+  <div class="container">
+    <h1>Soft DRC OCR</h1>
+    <p>Scanner et extraire le texte de vos images facilement.</p>
+
+    <!-- Upload image -->
+    <input type="file" id="imageInput" accept="image/*">
+
+    <!-- Boutons -->
+    <div class="buttons">
+      <button id="scanBtn">?? Scanner le texte</button>
+      <button id="copyBtn">?? Copier</button>
+      <button id="shareBtn">?? Partager</button>
+    </div>
+
+    <!-- Loader -->
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>Extraction du texte en cours...</p>
+      <div class="progress-bar"><div id="progressFill"></div></div>
+    </div>
+
+    <!-- Zone résultat -->
+    <div id="outputContainer">
+      <h2>?? Texte détecté :</h2>
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+  <!-- Conteneur licence -->
+  <div id="licenseContainer">
+    <p id="licenseMessage">Veuillez entrer votre token pour activer l'application :</p>
+    <input id="tokenInput" type="text" placeholder="Votre token"/>
+    <button id="tokenBtn">Valider</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
