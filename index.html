@@ -10,8 +10,15 @@
 </head>
 <body>
 
-  <!-- Conteneur principal -->
-  <div class="container">
+  <!-- Conteneur licence (mot de passe) -->
+  <div id="passwordContainer">
+    <p>Entrez le mot de passe du mois pour débloquer l'application :</p>
+    <input id="passwordInput" type="password" placeholder="Mot de passe">
+    <button id="unlockBtn">Débloquer</button>
+  </div>
+
+  <!-- Conteneur principal de l'app -->
+  <div class="container" id="appContent" style="display:none;">
     <h1>Soft DRC OCR</h1>
     <p>Scanner et extraire le texte de vos images facilement.</p>
 
@@ -20,9 +27,9 @@
 
     <!-- Boutons -->
     <div class="buttons">
-      <button id="scanBtn">?? Scanner le texte</button>
-      <button id="copyBtn">?? Copier</button>
-      <button id="shareBtn">?? Partager</button>
+      <button id="scanBtn">📷 Scanner le texte</button>
+      <button id="copyBtn">📋 Copier</button>
+      <button id="shareBtn">📤 Partager</button>
     </div>
 
     <!-- Loader -->
@@ -34,16 +41,9 @@
 
     <!-- Zone résultat -->
     <div id="outputContainer">
-      <h2>?? Texte détecté :</h2>
+      <h2>📝 Texte détecté :</h2>
       <pre id="output"></pre>
     </div>
-  </div>
-
-  <!-- Conteneur licence -->
-  <div id="licenseContainer">
-    <p id="licenseMessage">Veuillez entrer votre token pour activer l'application :</p>
-    <input id="tokenInput" type="text" placeholder="Votre token"/>
-    <button id="tokenBtn">Valider</button>
   </div>
 
   <script src="script.js"></script>
