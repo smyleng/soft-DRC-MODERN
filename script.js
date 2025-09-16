@@ -1,5 +1,5 @@
 // ---------- MOT DE PASSE MENSUEL ----------
-const currentPassword = "1234"; // À changer chaque mois
+const currentPassword = "4400"; // À changer chaque mois
 
 // Sélection des éléments
 const scanBtn = document.getElementById('scanBtn');
@@ -65,3 +65,4 @@ document.getElementById('shareBtn').addEventListener('click', ()=>{
   if(navigator.share && text) navigator.share({text}).catch(err=>console.error(err));
   else alert("Partage non supporté sur cet appareil.");
 });
+
